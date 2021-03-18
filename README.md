@@ -7,4 +7,4 @@ Modern (2018...2021 years) linuxes and freeBSD (since 13.0) have annoying bug in
 
 This app is a simple workaround for this annoying behavior.
 
-Working principle: we have two barely identical systray icons, and change them every 0.25 seconds to forse screen redraw. For human eye it is a simple and static asterisk in systray, but screen redraws, what wee need.
+Working principle: we have two barely identical systray icons, and change them every 0.25 seconds to force screen redraw. For human eye it is a simple and static asterisk in systray, but screen redraws.
