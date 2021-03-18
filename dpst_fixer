@@ -1,0 +1,68 @@
+#!/usr/bin/env python3.7
+
+from PyQt5.QtGui import * 
+from PyQt5.QtWidgets import * 
+import threading
+
+print( '''
+|
+|   DPST fixer
+|   _____________________
+|   
+|   creates systray icon and changes 
+|   to very similar (to forse screen refresh) 
+|   every 0.25 seconds
+|
+|   (c) cjayho, 2021+
+|
+|   This software is distributed under the terms
+|   of 3-clause BSD license.
+|
+''')
+
+
+app = QApplication([]) 
+app.setQuitOnLastWindowClosed(False) 
+  
+# Adding an icon 
+icon1 = QIcon("icon1.png") 
+icon2 = QIcon("icon2.png") 
+i = True
+ii = False
+
+tray = QSystemTrayIcon() 
+tray.setVisible(True) 
+
+def changeIcon():
+
+    global i, ii
+    
+    if ii == True:
+        return
+
+    threading.Timer( 0.25, changeIcon ).start()
+    
+    if i == True:
+        tray.setIcon(icon1)
+        i = False
+    else:
+        tray.setIcon(icon2)
+        i = True
+
+def qq():
+    global ii, app
+    ii = True
+    app.quit()
+
+menu = QMenu() 
+  
+quit = QAction("Quit") 
+quit.triggered.connect(qq) 
+menu.addAction(quit) 
+
+tray.setContextMenu(menu)
+tray.setToolTip( "DPST fixer" )
+
+changeIcon()
+
+app.exec_() 
