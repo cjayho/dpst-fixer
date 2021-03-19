@@ -55,11 +55,31 @@ def qq():
     ii = True
     app.quit()
 
+def abt():
+	msgbox = QMessageBox();
+	msgbox.setIcon(QMessageBox.Information)
+	msgbox.setWindowTitle("About DPST fixer")
+	msgbox.setText("DPST fixer")
+	msgbox.setInformativeText('''© cjayho, 2021+
+
+https://github.com/cjayho/dpst-fixer
+
+This software is distributed under the 
+terms of 3-clause BSD license.
+''');
+	msgbox.setWindowIcon(icon1);
+	msgbox.exec();
+
 menu = QMenu() 
   
 quit = QAction("Quit") 
 quit.triggered.connect(qq) 
-menu.addAction(quit) 
+about = QAction("About...")
+about.triggered.connect(abt)
+
+menu.addAction(about)
+menu.addSeparator()
+menu.addAction(quit)
 
 tray.setContextMenu(menu)
 tray.setToolTip( "DPST fixer" )
